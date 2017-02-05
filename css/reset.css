@@ -29,7 +29,10 @@ footer, header, hgroup, menu, nav, section {
 	display: block;
 }
 body {
+	background: url("images/fondo_1.jpg");
+	color: black;
 	line-height: 1,5;
+	padding-left: 2%;
 }
 ol, ul {
 	list-style: none;
@@ -45,4 +48,41 @@ q:before, q:after {
 table {
 	border-collapse: collapse;
 	border-spacing: 0;
+}
+
+h1 {
+	font-weight: bold;
+	font-family: sans-serif;
+	text-align: center;
+	color:inherit;
+	font-size: xx-large;
+}
+h4{
+	font-family: 'Open Sans', sans-serif;
+	text-align: center;
+	font-weight: bold;
+}
+h3{
+	font-family: 'Open Sans', sans-serif;
+	text-align: center;
+	font-weight: bold;
+}
+h2{
+	font-family: 'Open Sans', sans-serif;
+ font-size: x-large;
+ text-transform: uppercase;
+ font-weight: bold;
+}
+p{
+	font-family: 'Open Sans', sans-serif;
+	text-align: justify;
+}
+strong{
+	font-weight: bold;
+}
+ul{
+	padding-left: 4%;
+	font-family: 'Open Sans', sans-serif;
+	list-style-type:circle;
+	border-spacing: 1.5;
 }
