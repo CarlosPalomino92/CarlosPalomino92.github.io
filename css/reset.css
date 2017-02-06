@@ -29,10 +29,12 @@ footer, header, hgroup, menu, nav, section {
 	display: block;
 }
 body {
-	background: url("images/fondo_1.jpg");
+	background-image: url("../images/g3.jpeg");
+	background-repeat: no-repeat;
 	color: black;
 	line-height: 1,5;
 	padding-left: 2%;
+	word-wrap: break-word;
 }
 ol, ul {
 	list-style: none;
@@ -46,6 +48,7 @@ q:before, q:after {
 	content: none;
 }
 table {
+	background-color: grey;
 	border-collapse: collapse;
 	border-spacing: 0;
 }
@@ -58,11 +61,17 @@ h1 {
 	font-size: xx-large;
 }
 h4{
+	opacity: 0.9;
+	 background-color:lightgrey;
+	 color: black;
 	font-family: 'Open Sans', sans-serif;
 	text-align: center;
 	font-weight: bold;
 }
 h3{
+	opacity: 0.9;
+	 background-color:lightgrey;
+	 color: black;
 	font-family: 'Open Sans', sans-serif;
 	text-align: center;
 	font-weight: bold;
@@ -74,13 +83,21 @@ h2{
  font-weight: bold;
 }
 p{
-	font-family: 'Open Sans', sans-serif;
-	text-align: justify;
+font-family: 'Open Sans', sans-serif;
+opacity: 0.9;
+ background-color:lightgrey;
+ color: black;
+ word-wrap:break-word;
+
+ text-align: justify;
 }
 strong{
 	font-weight: bold;
 }
 ul{
+	opacity: 0.9;
+	 background-color:lightgrey;
+	 color: black;
 	padding-left: 4%;
 	font-family: 'Open Sans', sans-serif;
 	list-style-type:circle;
