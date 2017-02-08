@@ -88,8 +88,7 @@ opacity: 0.9;
  background-color:lightgrey;
  color: black;
  word-wrap:break-word;
-
- text-align: justify;
+ text-align: left;
 }
 strong{
 	font-weight: bold;
