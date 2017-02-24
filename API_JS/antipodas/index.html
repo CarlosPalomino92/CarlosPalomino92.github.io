@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no"/>
+    <title>Simple Map</title>
+    <link rel="stylesheet" href="https://js.arcgis.com/3.19/esri/css/esri.css">
+    <style>
+      html, body, #map {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+    <script src="https://js.arcgis.com/3.19/"></script>
+    <script>
+      var map;
+
+      require(["esri/map","esri/geometry/Extent", "esri/geometry/webMercatorUtils", "dojo/on", "dojo/domReady!"], function(Map, Extent, webMercatorUtils) {
+        map = new Map("map", {
+          basemap: "topo",
+          center: [-122.45, 37.75],
+          zoom: 13
+        })
+        map2 = new Map("map2", {
+          basemap: "topo",
+          center: [-122.45, 37.75],
+          zoom: 13
+        })
+        map.on("extent-change", function(change){
+          var center = change.extent.getCenter();
+          //map2.centerAt(center);
+          var coord = webMercatorUtils.xyToLngLat(center.x, center.y);
+          if (coord[0] < 0) {
+
+          }
+          else if (coord[0] > 0){
+            coord[0]=coord[0]-180;
+
+          }
+          coord[1]=(-coord[1]);
+          var level = map.getLevel();
+          map2.centerAndZoom(coord, level);
+
+        });
+        // map.on("zoom-end", function(obj){
+        //   var zoom1 = obj.level();
+        //   map2.setLevel(zoom1)
+        // })
+    });
+    </script>
+
+  </head>
+  <body>
+    <div id="map"></div>
+    <div id="map2"></div>
+
+  </body>
+</html>

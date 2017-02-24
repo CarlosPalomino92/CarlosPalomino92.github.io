@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no"/>
+    <title>Simple Map</title>
+    <link rel="stylesheet" href="https://js.arcgis.com/3.19/dijit/themes/claro/claro.css">
+    <link rel="stylesheet" href="https://js.arcgis.com/3.19/esri/css/esri.css">
+    <style>
+      html, body, #map {
+        height: 100%;
+        margin: 0;
+        padding: 0;}
+      #HomeButton {
+          position: absolute;
+          top: 100px;
+          left: 20px;
+          z-index: 50;}
+      #BasemapToggle {
+        position: absolute;
+        top: 50px;
+        right: 20px;
+        z-index: 50;}
+  </style>
+
+    <script src="https://js.arcgis.com/3.19/"></script>
+    <script>
+      var map;
+
+      require(["esri/map", "esri/dijit/HomeButton", "esri/dijit/BasemapToggle", "esri/dijit/BasemapGallery", "esri/arcgis/utils", "dojo/parser", "dijit/layout/BorderContainer", "dijit/layout/ContentPane", "dijit/TitlePane", "dojo/domReady!"],
+      function(Map, HomeButton, BasemapToggle,BasemapGallery, arcgisUtils, parser) {
+
+        parser.parse();
+        map = new Map("map", {
+          basemap: "dark-gray-vector",  //For full list of pre-defined basemaps, navigate to http://arcg.is/1JVo6Wd
+          center: [-132.45, 58.75], // longitude, latitude
+          zoom: 6
+        });
+
+      var bot1 = new HomeButton ({
+        map: map
+      }, "HomeButton");
+      bot1.startup();
+
+      var tog = new BasemapToggle({
+        theme: "basemapToggle",
+        map: map,
+        visible: true,
+        basemap: "hybrid"
+      }, "BasemapToggle");
+      tog.startup();
+
+      var gallery = new BasemapGallery({
+        showArcGISBasemaps: true,
+        map: map
+      }, "BasemapGallery");
+      gallery.startup();
+  });
+    </script>
+  </head>
+  <body class="claro">
+    <div data-dojo-type="dijit/layout/BorderContainer"
+         data-dojo-props="design:'headline', gutters:false"
+         style="width:100%;height:100%;margin:0;">
+
+      <div id="map"
+           data-dojo-type="dijit/layout/ContentPane"
+           data-dojo-props="region:'center'"
+           style="padding:0;">
+
+        <div style="position:absolute; right:20px; top:10px; z-Index:999;">
+          <div data-dojo-type="dijit/TitlePane"
+               data-dojo-props="title:'Switch Basemap', closable:false, open:false">
+            <div data-dojo-type="dijit/layout/ContentPane" style="width:380px; height:280px; overflow:auto;">
+              <div id="BasemapGallery"></div>
+            </div>
+          </div>
+        </div>
+        <div id="HomeButton"></div>
+        <div id="BasemapToggle"></div>
+      </div>
+    </div>
+  </body>
+
+  </html>

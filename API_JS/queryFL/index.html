@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no"/>
+    <title>Simple Map</title>
+    <link rel="stylesheet" href="https://js.arcgis.com/3.19/esri/css/esri.css">
+    <style>
+      html, body, #map {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+    <script src="https://js.arcgis.com/3.19/"></script>
+    <script>
+      var map;
+
+      require(["esri/map",
+              "esri/layers/ArcGISDynamicMapServiceLayer",
+              "esri/layers/FeatureLayer",
+              "esri/tasks/query",
+              "esri/tasks/QueryTask",
+              "esri/geometry/Circle",
+              "dojo/domReady!"],
+
+      function(Map,
+              ArcGISDynamicMapServiceLayer,
+              FeatureLayer,
+              Query,
+              QueryTask,
+              Circle) {
+
+// En este ajemplo emplearemos la clase query para vincular una consulta t la clase query task
+// para ejecutar la consulta sobre los servicios que especifiquemos
+
+        map = new Map("map", {
+          basemap: "topo",
+          center: [-132.45, 58.75],
+          zoom: 5
+        });
+      urlMS = "http://sampleserver6.arcgisonline.com/arcgis/rest/services/USA/MapServer"
+      urlFL = "http://sampleserver6.arcgisonline.com/arcgis/rest/services/USA/MapServer/1"
+
+
+      fl = new FeatureLayer(urlFL,{id:"carreteras"});
+        map.addLayer(fl);
+
+     ms = new ArcGISDynamicMapServiceLayer(urlMS,{id:"USA",opacity:0.3});
+      map.addLayer(ms);
+// Añadiremos query y aplicaremos la funcion que queramos ejecutar en ella
+
+    var myquery = new Query();
+// Añadimos los atributos de entrada de la query
+    myquery.where = "admn_class = Interestate";
+// Atributos de salida de la query
+    myquery.outfields = "admn_class"
+
+// Añadimos la especificación so queremos que nos de de vuelta la geometria
+    myquery.returnGeometry = true;
+// Le añadimos la referencia espacial del mapa para que los datos de salida
+// nos representen correctamente en el mapa
+    myquery.OutSpatialReference = map.spatialReference;
+// Añadimos la query task para la feature layer
+    var qt = new QueryTask(fl);
+
+// Ahora vamos a adjudicar al evento click una geometria, en este caso un circulo,
+// de esta amnera al hacer click se nos creará un circulo alque luego
+// le aplicaremos una consulta y seleccione las entidades que estan dentro
+  map.on("click", function(evento){
+    var circulo = new Circle ({
+      center: evento.mapPoint,
+      radius: 150})
+
+
+// Añadimos la geometria creada en el paso anterior a la query, NO A LA QUERY TASK
+// SI NO A LA QUERY NORMAL
+  myquery.geometry = circulo
+// Ademas añadimos el criterio espacial a la query, que se encuentra dentro de las porpiedades,
+// de esta menra especificaremos por ejemplo que se selecciones las entidades
+// que se encuentran dentro o las que intersectan
+ myquery.spatialRelationship = query.SPATIAL_REL_CONTAINS;
+
+ myQueryTask.execute(myquery,show);
+ });
+
+      });
+    </script>
+  </head>
+
+  <body>
+    <div id="map"></div>
+  </body>
+</html>

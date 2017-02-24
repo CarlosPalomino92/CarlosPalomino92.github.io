@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no"/>
+  <title>Simple Map</title>
+  <link rel="stylesheet" href="https://js.arcgis.com/3.19/esri/css/esri.css">
+  <style>
+  html, body, #map {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+  </style>
+  <script src="https://js.arcgis.com/3.19/"></script>
+  <script>
+  var map;
+
+  require(["esri/map","esri/layers/ArcGISTiledMapServiceLayer", "esri/layers/ArcGISDynamicMapServiceLayer", "esri/layers/FeatureLayer", "dojo/domReady!"],
+  function(Map, ArcGISTiledMapServiceLayer, ArcGISDynamicMapServiceLayer, FeatureLayer) {
+    map = new Map("map", {
+      center: [-122.45, 37.75],
+      zoom: 8
+    });
+    var tiled = new ArcGISTiledMapServiceLayer("http://services.arcgisonline.com/arcgis/rest/services/World_Terrain_Base/MapServer");
+    var dinam = new ArcGISDynamicMapServiceLayer("http://sampleserver6.arcgisonline.com/arcgis/rest/services/USA/MapServer",{opacity:0.4});
+    var feat = new FeatureLayer("http://sampleserver6.arcgisonline.com/arcgis/rest/services/USA/MapServer/1");
+  map.addLayer(tiled)
+  map.addLayer(dinam)
+  map.addLayer(feat)
+  });
+</script>
+</head>
+
+<body>
+  <div id="map"></div>
+</body>
+</html>

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no"/>
+    <title>Simple Map</title>
+    <title>Layer List Dijit</title>
+    <link rel="stylesheet" href="https://js.arcgis.com/3.19/dijit/themes/claro/claro.css">
+    <link rel="stylesheet" href="https://js.arcgis.com/3.19/esri/css/esri.css">
+    <style>
+    html, body,
+    #map {
+         height: 100%;
+         width: 100%;
+         margin: 0;
+         padding: 0;
+      }
+      #search {
+         display: block;
+         position: absolute;
+         z-index: 2;
+         top: 20px;
+         left: 74px;
+      }
+      #layerListPane{
+         width:25%;
+      }
+      #layerList{
+         display: block;
+         position: absolute;
+         z-index: 2;
+         top: 5px;
+         right: 5px;
+      }
+      #scaleBarDiv{
+         display: block;
+         position: absolute;
+         z-index: 2;
+         bottom: 20px;
+         left: 120px;
+      }
+      #BasemapToggle {
+         position: absolute;
+         bottom: 60px;
+         right: 20px;
+         z-index: 50;
+      }
+      #HomeButton {
+         position: absolute;
+         top: 95px;
+         left: 20px;
+         z-index: 50;
+      }
+    </style>
+    <script src="https://js.arcgis.com/3.19/"></script>
+    <script>
+      var map;
+
+      require(["esri/map", "esri/layers/ArcGISDynamicMapServiceLayer", "esri/dijit/LayerList", "esri/dijit/Search", "dijit/layout/BorderContainer",
+    "dijit/layout/ContentPane", "dojo/domReady!"],
+      function(Map, ArcGISDynamicMapServiceLayer, LayerList, Search) {
+        map = new Map("map", {
+          basemap: "topo",  //For full list of pre-defined basemaps, navigate to http://arcg.is/1JVo6Wd
+          center: [-132.45, 58.75], // longitude, latitude
+          zoom: 5
+        });
+        var dinam = new ArcGISDynamicMapServiceLayer("http://sampleserver6.arcgisonline.com/arcgis/rest/services/USA/MapServer")
+        map.addLayer(dinam)
+
+        var layerList = new LayerList({
+            map: map,
+            layers: [{
+              layer: dinam,
+              id: "USA"
+            }],
+            showLegend: true,
+            showSubLayers: true,
+            showOpacitySlider: true
+          },
+          "layerList");
+        layerList.startup()
+
+        var search = new Search({
+          map: map,
+          enableButtonMode: true,
+          enableInfoWindow: true,
+          enableSearchingAll: true,
+          showInfoWindowOnSelect: true
+        }, "search")
+        search.startup()
+
+        // var sources = search.get("sources");
+
+      });
+
+    </script>
+
+  </head>
+  <body>
+     <div id="search"></div>
+     <div id="map">
+        <div id="BasemapToggle"></div>
+        <div id="HomeButton"></div>
+        <div id="scaleBarDiv"></div>
+     </div>
+     <div id="layerListPane">
+        <div id="layerList"></div>
+     </div>
+  </body>
+  </html>

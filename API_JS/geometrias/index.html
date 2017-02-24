@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no"/>
+    <title>Simple Map</title>
+    <link rel="stylesheet" href="https://js.arcgis.com/3.19/esri/css/esri.css">
+    <style>
+      html, body, #map {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+    <script src="https://js.arcgis.com/3.19/"></script>
+    <script>
+      var map;
+
+      require(["esri/map",
+                "esri/geometry/Point",
+                "esri/symbols/SimpleMarkerSymbol",
+               "esri/symbols/PictureMarkerSymbol",
+               "esri/graphic",
+               "esri/layers/GraphicsLayer",
+                "dojo/domReady!"],
+
+      function(Map,
+              Point,
+              GraphicsLayer,
+              SimpleMarkerSymbol,
+              PictureMarkerSymbol,
+              Graphic,
+              GraphicsLayer) {
+
+
+// creamos el mapa donde iremos añadiendo los widgets y elementos
+        map = new Map("map", {
+          basemap: "topo",
+          center: [-132.45, 58.75],
+          zoom: 7
+        });
+
+        sr =  map.spatialReference
+// creamos las geometrias a las que queremos aplicar los estilos
+// que vamos a añadir posteriormente
+
+        var pt = new Point ([-132.45, 58.75], sr);
+
+
+// creamos las variables en primer lugar de las geometrias
+// que vamos a utilizar "esri/symbols/" en este caso
+// dos tipos de puntos
+
+    //  var sms = new SimpleMarkerSymbol();
+     var pms = new PictureMarkerSymbol("https://openclipart.org/image/2400px/svg_to_png/75397/punto.png", 50, 50)
+
+// añadimos un evento click, en el que se incorporará
+// un grafico con la simbología y la geometria, en este caso
+// de tipo punto.
+
+    map.on ("click", function(){
+     var gf = new Graphic (pt, pms);
+     map.graphics.add(gf)
+   });
+
+
+
+
+
+      });
+    </script>
+  </head>
+
+  <body>
+    <div id="map"></div>
+  </body>
+</html>

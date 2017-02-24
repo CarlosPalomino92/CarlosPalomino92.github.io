@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no"/>
+    <title>Simple Map</title>
+    <link rel="stylesheet" href="https://js.arcgis.com/3.19/dijit/themes/claro/claro.css">
+    <link rel="stylesheet" href="https://js.arcgis.com/3.19/esri/css/esri.css">
+    <script src="https://js.arcgis.com/3.19/"></script>
+    <style>
+	    html, body #mapDiv{
+	      height: 97%;
+	      width: 98%;
+	      margin: 1%;
+	    }
+	</style>
+    <script src="https://js.arcgis.com/3.19/"></script>
+    <script>
+
+      require(["esri/map", "esri/arcgis/utils", "esri/dijit/LayerList","dijit/layout/BorderContainer", "dijit/layout/ContentPane", "dijit/TitlePane", "dojo/domReady!"],
+      function(Map, arcgisUtils, LayerList) {
+
+        webmapID = "b166f457be1a4410bc4be343674926f8"
+        var map;
+        arcgisUtils.createMap(webmapID, "MapDiv").then(function(response){
+          map = response.map;
+          var objeto = arcgisUtils.getLayerList(respose);
+          var widget = new LayerList({
+            map: response.map,
+            layers: objeto
+          }, "LayerList");
+
+        widget.startup();
+        });
+      });
+    </script>
+  </head>
+
+  <body class="clarp">
+    <div id="content">
+      <div id= "LayerList"></div>
+      <div id= "MapDiv"></div>
+    </div>
+  </body>
+</html>

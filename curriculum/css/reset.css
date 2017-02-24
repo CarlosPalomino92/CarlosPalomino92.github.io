@@ -30,6 +30,7 @@ footer, header, hgroup, menu, nav, section {
 }
 body {
 	background-image: url("../images/g3.jpeg");
+	image-resolution:from-image;
 	background-repeat: no-repeat;
 	color: black;
 	line-height: 1,5;
@@ -51,54 +52,4 @@ table {
 	background-color: grey;
 	border-collapse: collapse;
 	border-spacing: 0;
-}
-
-h1 {
-	font-weight: bold;
-	font-family: sans-serif;
-	text-align: center;
-	color:inherit;
-	font-size: xx-large;
-}
-h4{
-	opacity: 0.9;
-	 background-color:lightgrey;
-	 color: black;
-	font-family: 'Open Sans', sans-serif;
-	text-align: center;
-	font-weight: bold;
-}
-h3{
-	opacity: 0.9;
-	 background-color:lightgrey;
-	 color: black;
-	font-family: 'Open Sans', sans-serif;
-	text-align: center;
-	font-weight: bold;
-}
-h2{
-	font-family: 'Open Sans', sans-serif;
- font-size: x-large;
- text-transform: uppercase;
- font-weight: bold;
-}
-p{
-font-family: 'Open Sans', sans-serif;
-opacity: 0.9;
- background-color:lightgrey;
- color: black;
- word-wrap:break-word;
- text-align: left;
-}
-strong{
-	font-weight: bold;
-}
-ul{
-	opacity: 0.9;
-	 background-color:lightgrey;
-	 color: black;
-	padding-left: 4%;
-	font-family: 'Open Sans', sans-serif;
-	list-style-type:circle;
-	border-spacing: 1.5;
 }
