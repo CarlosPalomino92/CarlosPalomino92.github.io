@@ -16,8 +16,18 @@
   <script>
   var map;
 
-  require(["esri/map","esri/layers/ArcGISTiledMapServiceLayer", "esri/layers/ArcGISDynamicMapServiceLayer", "esri/layers/FeatureLayer", "dojo/on", "dojo/domReady!"],
-  function(Map, ArcGISTiledMapServiceLayer, ArcGISDynamicMapServiceLayer, FeatureLayer) {
+  require(["esri/map",
+          "esri/layers/ArcGISTiledMapServiceLayer",
+         "esri/layers/ArcGISDynamicMapServiceLayer",
+         "esri/layers/FeatureLayer",
+         "dojo/on",
+         "dojo/domReady!"],
+
+  function(Map,
+           ArcGISTiledMapServiceLayer,
+           ArcGISDynamicMapServiceLayer,
+           FeatureLayer)
+    {
     map = new Map("map", {
       center: [-122.45, 37.75],
       zoom: 8

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<title>Mapa Simple - Prueba PRAC</title>
+
+  <link rel="stylesheet" href="https://js.arcgis.com/4.3/esri/css/main.css">
+  <script src="https://js.arcgis.com/4.3/"></script>
+
+<!-- Este script siguiente es el que contiene toda la materia
+de java script y en el que se realizan las funciones.
+Para estas primero se deben llamar en en el rquire y en
+function, para luego más abajo crearlas como publicas o como
+privadas en el function primero -->
+<script>
+
+
+require([
+  "esri/Map",
+  "esri/views/MapView",
+  // en esta api siempre tiene que ir dojo on
+  // y dojo dom ready. En el function no hace falta
+  "dojo/on",
+  "dojo/domReady!"
+],
+
+ function(Map,
+          MapView)
+
+  {
+
+  // CODIGO PARA EL MAPA VA AQUÍ
+  // Por ejemplo crear un mapa nuevo
+
+  map = new Map ({
+
+  });
+
+  var view = new MapView({
+    container: "viewDiv",  // Reference to the scene div created in step 5
+    map: map,  // Reference to the map object created before the scene
+    zoom: 4,  // Sets the zoom level based on level of detail (LOD)
+    center: [15, 65]  // Sets the center point of view in lon/lat
+
+  });
+});
+</script>
+
+<style>
+  html, body, #viewDiv {
+    padding: 0;
+    margin: 0;
+    height: 100%;
+    width: 100%;
+  }
+</style>
+
+</head>
+
+<body>
+  <div id="viewDiv"></div>
+</body>
+
+</html>
